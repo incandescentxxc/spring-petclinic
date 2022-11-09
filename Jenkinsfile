@@ -1,16 +1,11 @@
-#!groovy
-pipeline {
-    agent none
-   stages {     
-    stage('Maven Install') {
-      agent {         
-       docker {          
-         image 'maven:3.8.5'         
-     }       
-  }       
-  steps {
-       sh 'mvn clean install -Dcheckstyle.skip'
-       }
-     }
-   }
- }
+ node {
+  stage('SCM') {
+    checkout scm
+  }
+  stage('SonarQube Analysis') {
+    def mvn = tool 'maven';
+    withSonarQubeEnv() {
+      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=17646-petclinic"
+    }
+  }
+}
