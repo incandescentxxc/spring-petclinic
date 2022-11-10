@@ -1,7 +1,7 @@
 node {
   stage('SCM') {
     echo "start pulling repo"
-    git branch: 'main', url: 'https://github.com/spring-projects/spring-petclinic'
+    git branch: 'main', url: 'https://github.com/incandescentxxc/spring-petclinic'
   }
   // stage('SonarQube analysis') {
   //   def scannerHome = tool 'SonarQube-Scanner-4.7.0';
