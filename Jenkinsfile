@@ -29,11 +29,6 @@ node {
       sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=petclinic -Dsonar.java.binaries=. -Dsonar.sources=src/main,src/test -Dsonar.language=java"
     }
   }
-  stage("Quality gate") {
-        steps {
-            waitForQualityGate abortPipeline: true
-        }
-    }
   stage("build jar file") {
       sh "mvn clean install"
   }
