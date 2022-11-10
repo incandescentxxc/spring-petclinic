@@ -31,6 +31,7 @@ node {
   // }
   stage("build jar file") {
       def maven = tool 'Maven 3.8.6';
+      sh "rm -rf .scannerwork"
       sh "${maven}/bin/mvn clean install"
   }
 }
