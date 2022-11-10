@@ -11,10 +11,8 @@ pipeline {
     }
     stage('Sonarqube Analysis') {
       def scannerHome = tool 'SonarQube-Scanner-4.7.0';
-      steps {
-        withSonarQubeEnv('sonarqube-9.7.1') {
-          sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=petclinic"
-        }
+      withSonarQubeEnv('sonarqube-9.7.1') {
+        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=petclinic"
       }
     }
   }
