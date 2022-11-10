@@ -11,8 +11,8 @@ pipeline {
     }
     stage('Sonarqube Analysis') {
       steps {
-        withSonarQubeEnv('SonarQube') {
-          sh "mvn sonar:sonar -Dsonar.projectKey=17646-petclinic -Dsonar.host.url=http://localhost:9000"
+        withSonarQubeEnv('sonarqube-9.7.1') {
+          sh "mvn sonar:sonar"
         }
       }
     }
