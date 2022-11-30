@@ -1,2 +1,4 @@
 [web_server]
-11.11.11.13
+webserver
+[web_server:vars]
+ansible_connection=docker
