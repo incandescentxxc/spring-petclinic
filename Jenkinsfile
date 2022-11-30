@@ -1,6 +1,10 @@
 pipeline {
   agent any
 
+  tools {
+    maven "Maven 3.8.6"
+  }
+
   stages {
     stage('verify ansible') {
       steps {
@@ -14,9 +18,7 @@ pipeline {
 
     stage ('Build') {
       steps {
-          withMaven(maven : 'maven') {
-              sh 'mvn package'
-          }
+          sh 'mvn clean install'
       }
     }
 
