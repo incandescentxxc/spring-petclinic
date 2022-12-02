@@ -8,18 +8,21 @@
     register: shell_result
 - name: Install Java
   hosts: web_server
+  remote_user: ubuntu
   become: yes
   tasks:
     - name: installing jdk8
       yum: name=java-1.8.0-openjdk.x86_64 state=latest
 - name: Install Maven
   hosts: web_server
+  remote_user: ubuntu
   become: yes
   tasks:
     - name: installing maven
       yum: name=maven state=latest
 - name: Copy Snapshot
   hosts: web_server
+  remote_user: ubuntu
   become: yes
   tasks:
     - name: copying jar file
@@ -28,6 +31,7 @@
         dest: /home/ubuntu/jenkins/snapshot.jar
 - name: Run petclinic
   hosts: web_server
+  remote_user: ubuntu
   become: yes
   become_user: root
   tasks:
