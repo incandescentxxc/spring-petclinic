@@ -16,11 +16,11 @@ pipeline {
       }
     }
 
-    stage ('Build') {
-      steps {
-          sh 'mvn clean install -Djacoco.skip=true'
-      }
-    }
+    // stage ('Build') {
+    //   steps {
+    //       sh 'mvn clean install -Djacoco.skip=true'
+    //   }
+    // }
 
 
     stage ('Deploy') {

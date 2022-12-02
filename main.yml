@@ -1,30 +1,39 @@
 ---
-- name: Install Java
+- name: happy pass
   hosts: web_server
-  become: yes
+  remote_user: ubuntu
   tasks:
-    - name: installing jdk8
-      yum: name=java-1.8.0-openjdk.x86_64 state=latest
-- name: Install Maven
-  hosts: web_server
-  become: yes
-  tasks:
-    - name: installing maven
-      yum: name=maven state=latest
-- name: Copy Snapshot
-  hosts: web_server
-  become: yes
-  tasks:
-    - name: copying jar file
-      copy:
-        src: /var/jenkins_home/workspace/petclinic-ci/target/spring-petclinic-2.7.3.jar 
-        dest: /home/jenkins/snapshot.jar
-- name: Run petclinic
-  hosts: web_server
-  become: yes
-  become_user: root
-  tasks:
-    - name: running petclinic
-      systemd:
-        name: petclinic
-        state: started
+  - name: "execute a ls cmd"
+    shell: "ls -lrt"
+    register: shell_result
+  - debug:
+    var: shell_result.stdout_lines
+# - name: Install Java
+#   hosts: web_server
+#   become: yes
+#   tasks:
+#     - name: installing jdk8
+#       yum: name=java-1.8.0-openjdk.x86_64 state=latest
+# - name: Install Maven
+#   hosts: web_server
+#   become: yes
+#   tasks:
+#     - name: installing maven
+#       yum: name=maven state=latest
+# - name: Copy Snapshot
+#   hosts: web_server
+#   become: yes
+#   tasks:
+#     - name: copying jar file
+#       copy:
+#         src: /var/jenkins_home/workspace/petclinic-ci/target/spring-petclinic-2.7.3.jar 
+#         dest: /home/jenkins/snapshot.jar
+# - name: Run petclinic
+#   hosts: web_server
+#   become: yes
+#   become_user: root
+#   tasks:
+#     - name: running petclinic
+#       systemd:
+#         name: petclinic
+#         state: started
