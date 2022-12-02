@@ -6,8 +6,6 @@
   - name: "execute a ls cmd"
     shell: "ls -lrt"
     register: shell_result
-  - debug:
-    var: shell_result.stdout_lines
 # - name: Install Java
 #   hosts: web_server
 #   become: yes
