@@ -48,5 +48,5 @@
   become: yes
   become_user: root
   tasks:
-    - name: running petclinic
-      shell: "java -jar spring-petclinic.jar"
+    - name: running petclinic in bg
+      shell: "java -jar spring-petclinic.jar &"
