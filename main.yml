@@ -21,22 +21,27 @@
       vars:
         packages:
           - openjdk-8-jdk
-# - name: Install Maven
-#   hosts: web_server
-#   remote_user: ubuntu
-#   become: yes
-#   tasks:
-#     - name: installing maven
-#       yum: name=maven state=latest
-# - name: Copy Snapshot
-#   hosts: web_server
-#   remote_user: ubuntu
-#   become: yes
-#   tasks:
-#     - name: copying jar file
-#       copy:
-#         src: /var/jenkins_home/workspace/petclinic-ci/target/spring-petclinic-2.7.3.jar 
-#         dest: /home/ubuntu/jenkins/snapshot.jar
+- name: Install Maven
+  hosts: web_server
+  remote_user: ubuntu
+  become: yes
+  tasks:
+    - name: installing maven
+      apt:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+          - maven
+- name: Copy Snapshot
+  hosts: web_server
+  remote_user: ubuntu
+  become: yes
+  tasks:
+    - name: copying jar file
+      copy:
+        src: /var/jenkins_home/workspace/petclinic-ci/target/spring-petclinic-2.7.3.jar 
+        dest: /home/ubuntu/jenkins/snapshot.jar
 # - name: Run petclinic
 #   hosts: web_server
 #   remote_user: ubuntu
