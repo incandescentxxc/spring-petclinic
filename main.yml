@@ -11,31 +11,39 @@
   remote_user: ubuntu
   become: yes
   tasks:
+    - name: update apt cache
+      apt:
+        update_cache: yes
     - name: installing jdk8
-      yum: name=java-1.8.0-openjdk.x86_64 state=latest
-- name: Install Maven
-  hosts: web_server
-  remote_user: ubuntu
-  become: yes
-  tasks:
-    - name: installing maven
-      yum: name=maven state=latest
-- name: Copy Snapshot
-  hosts: web_server
-  remote_user: ubuntu
-  become: yes
-  tasks:
-    - name: copying jar file
-      copy:
-        src: /var/jenkins_home/workspace/petclinic-ci/target/spring-petclinic-2.7.3.jar 
-        dest: /home/ubuntu/jenkins/snapshot.jar
-- name: Run petclinic
-  hosts: web_server
-  remote_user: ubuntu
-  become: yes
-  become_user: root
-  tasks:
-    - name: running petclinic
-      systemd:
-        name: petclinic
-        state: started
+      apt:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+          - openjdk-8-jdk
+# - name: Install Maven
+#   hosts: web_server
+#   remote_user: ubuntu
+#   become: yes
+#   tasks:
+#     - name: installing maven
+#       yum: name=maven state=latest
+# - name: Copy Snapshot
+#   hosts: web_server
+#   remote_user: ubuntu
+#   become: yes
+#   tasks:
+#     - name: copying jar file
+#       copy:
+#         src: /var/jenkins_home/workspace/petclinic-ci/target/spring-petclinic-2.7.3.jar 
+#         dest: /home/ubuntu/jenkins/snapshot.jar
+# - name: Run petclinic
+#   hosts: web_server
+#   remote_user: ubuntu
+#   become: yes
+#   become_user: root
+#   tasks:
+#     - name: running petclinic
+#       systemd:
+#         name: petclinic
+#         state: started
