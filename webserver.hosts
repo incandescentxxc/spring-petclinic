@@ -1,4 +1,2 @@
 [web_server]
-webserver
-[web_server:vars]
-ansible_connection=docker
+ec2-3-92-132-9.compute-1.amazonaws.com ansible_ssh_private_key_file=/var/ansible.cer
