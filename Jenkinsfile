@@ -6,7 +6,7 @@ pipeline {
   }
 
   stages {
-    stage('verify ansible') {
+    stage('Verify ansible') {
       steps {
         sh '''
           ansible --version

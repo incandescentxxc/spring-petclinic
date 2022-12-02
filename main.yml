@@ -40,7 +40,7 @@
   tasks:
     - name: copying jar file
       copy:
-        src: /var/jenkins_home/workspace/petclinic-ci/target/spring-petclinic-2.7.3.jar 
+        src: /var/jenkins_home/workspace/ansible/target/spring-petclinic-2.7.3.jar 
         dest: /home/ubuntu/jenkins/snapshot.jar
 # - name: Run petclinic
 #   hosts: web_server
