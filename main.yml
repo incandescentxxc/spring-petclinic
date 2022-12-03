@@ -49,4 +49,4 @@
   become_user: root
   tasks:
     - name: running petclinic in bg
-      shell: "java -jar spring-petclinic.jar &"
+      shell: "nohup java -jar spring-petclinic.jar &"
